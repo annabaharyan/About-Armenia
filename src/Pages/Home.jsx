@@ -1,13 +1,14 @@
-import { ImageAspectRatioOutlined } from '@mui/icons-material';
-import React, { useRef } from 'react';
+
+import React from 'react';
 import { useState,useEffect } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
+import { getStateLang } from '../Fetches/LangSlice/langSlice';
 import { filterMapLang, myMap } from '../Fetches/MyMap/mapSlice';
 import { firstImg } from '../Fetches/MyMap/myMap';
 
 
 const Home = () => {
-   const currentLang=useSelector(state=>{return state.currentLang})
+   const currentLang=useSelector(getStateLang)
     const maps=useSelector(myMap)
     const[currentRegion,setCurrentRegion]=useState('')
     const [changeButton,setChangeButton]=useState(false)
@@ -43,7 +44,7 @@ const Home = () => {
               <div key={index} className='cols'>
                <img key={region.id} src={`${region.imgUrl}`} alt="qartez HH" className='qartez'/> 
                <div className='col2'> 
-               <button className={`aboutBtn ${changeButton?'activeBtn':''}`}  key={+region.id*10} onClick={changeButtonStatus} >{region.title}</button>
+               <button className={`aboutBtn ${changeButton?'activeBtn':''}`}  key={+region.id*10} onClick={changeButtonStatus} >{currentLang==='en'?'About Region':'Մարզի մասին'}</button>
                <p key={+region.id*5} className={changeButton?'':'noactive'}>{region.desc}</p>
                </div>
               

@@ -3,12 +3,11 @@ import {Link} from 'react-router-dom'
 import { useSelector,useDispatch } from 'react-redux/es/exports';
 import { menu } from '../Languages/langs'
 import { lang } from '../Fetches/LangSlice/initialLang';
-import { getLang } from '../Fetches/LangSlice/langSlice';
+import { getLang, getStateLang } from '../Fetches/LangSlice/langSlice';
 const Header = () => {
    
-const langs=useSelector(state=>{return state.currentLang})
+const langs=useSelector(getStateLang)
 const dispatch=useDispatch()
-
 
     return (
 
